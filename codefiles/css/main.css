@@ -136,7 +136,7 @@ a.btn{
   grid-column: span 2;
 }
 .shopitem span.name{
-  display: inline-block;
+  display: grid;
   grid-column: span 2;
   text-align: left;
   padding: 2mm 5mm;
