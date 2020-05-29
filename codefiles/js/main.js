@@ -63,7 +63,7 @@ function items_loaded(){
         return n;
       },
       ordertext: function(){
-        var s = `Order From \n ${app.name} \n ${app.Address1} \n ${app.Address2} \n \n Items: \n`;
+        var s = `${app.name} wants to order following Items: \n\n`;
         for(var i=0;i<this.items.length;i++){
           if(this.items[i].quantity>0){
             s += `\n\n${this.items[i].Name}\nQuantity: ${this.items[i].quantity}`
