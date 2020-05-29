@@ -1,14 +1,12 @@
 <html>
 <head>
-  <title>FlashCart | WhatsApp shopping template</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NammaBasket | WhatsApp Shopping </title>
+  <meta name="viewport" content="width=device-width, initial-scale=0.5">
   <meta name="theme-color" content="#1d201f">
   <meta charset="utf-8">
   <meta name="description" content="FlashCart is shopping cart that lets your customers order via WhatsApp">
   
-  <meta property="og:title" content="FlashCart: Shop Via WhatsApp" />
-  <meta property="og:url" content="https://flashcart.wiosdesigns.xyz" />
-  <meta property="og:description" content="FlashCart is shopping cart that lets your customers order via WhatsApp">
+  <meta property="og:title" content="NammaBasket: Shop Via WhatsApp" />
   <meta property="og:image" content="/codefiles/assets/ogicon.png">
   <meta property="og:type" content="website" />
   
@@ -47,10 +45,9 @@
       using familiar spreadsheet software such as MS Excel or Google Sheets.
       Receive and manage orders via WhatsApp, Email or SMS.
     </h3>
-    <a href="#shop" class="btn">Try the demo</a>
+    <a href="#shop" class="btn">     Shop      </a>
     <br><br>
-    <h1>Why FlashCart?</h1>
-    
+      
     <details>
 
     </details>
@@ -62,6 +59,7 @@
       v-for="i in items" 
       v-if="i.Featured=='yes'" 
       v-bind:name="i.Name"
+      v-bind:image="i.Image"
       v-bind:description="i.Description"
       v-bind:unitprice="i['Unit Price']"
       v-bind:unit="i['Unit']"
@@ -69,7 +67,6 @@
       v-bind:quantity="i.quantity"
       v-on:plus="i.quantity++"
       v-on:minus="if(i.quantity>0) i.quantity--"
-      v-bind:image="i.image"
       >
     </shop-item>
     
