@@ -38,21 +38,11 @@
   </header>
   <section id="home" class="hnav" hnav:start>
     <h3>
-      FlashCart is a quick-setup and easy-use 
-      website template for your online shop. 
-      <br>
-      Manage your inventory
-      using familiar spreadsheet software such as MS Excel or Google Sheets.
-      Receive and manage orders via WhatsApp, Email or SMS.
+    Select Products and Order through Whatsapp
     </h3>
-    <a href="#shop" class="btn">     Shop      </a>
+    <a href="#shop" class="btn"> Shop </a>
     <br><br>
       
-    <details>
-
-    </details>
-
-    <br><br>
     <h1>Featured items</h1>
     
     <shop-item 
@@ -164,9 +154,7 @@
         Note: SMS option works only on Android devices
       </p>
       <button v-on:click="orderwa">Order Via WhatsApp</button><br>
-      <button v-on:click="ordersms">Order Via SMS</button><br>
-      <button v-on:click="orderemail">Order Via Email</button><br>
-    </div>
+      </div>
   </section>
   
   <div id="footer" v-if="nitems>0 && !cartpage">
