@@ -218,7 +218,7 @@ a.btn{
   color: var(--theme);
   font-size: 4mm;
 }
-#checkout input,#checkout button{
+#checkout input,#checkout button, #checkout textarea{
   border: none;
   outline: none;
   display: inline-block;
