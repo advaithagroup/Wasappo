@@ -1,4 +1,4 @@
-<html xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<html>
 <head>
   <title>NammaBasket | WhatsApp Shopping </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -168,31 +168,17 @@
   
 </div>
 <script type="text/x-template" id="shop-item-template">
-  <div class="row">
-    <div class="col-md-4">
-      <img v-if="!compact" v-bind:src="`/inventory/images/${image}`">
-    </div>
-  </div>
   <div class="shopitem">
-    <div class="row">
-      <div class="col-md-4">
-        <img v-if="!compact" v-bind:src="`/inventory/images/${image}`">
-      </div>
-      <div class="col-md-4">
-        <span class="name">{{name}}</span>
-        <span class="price">{{$parent.settings.currency}}{{unitprice}}/{{unit}}</span>
-        <button v-on:click="$emit('plus')" v-if="instock=='yes' && quantity<1">Add to cart</button>
-        <div class="qctrl" v-else-if="instock=='yes' && quantity>0">
-          <span class="icon" v-on:click="$emit('minus')">r</span>
-          <span>{{quantity}}</span>
-          <span class="icon" v-on:click="$emit('plus')">a</span>
-        </div>
-        <span v-else class="outofstock">Out of Stock</span>
-      </div>
+    <img v-if="!compact" v-bind:src="`/inventory/images/${image}`">
+    <span class="name">{{name}}</span>
+    <span class="price">{{$parent.settings.currency}}{{unitprice}}/{{unit}}</span>
+    <button v-on:click="$emit('plus')" v-if="instock=='yes' && quantity<1">Add to cart</button>
+    <div class="qctrl" v-else-if="instock=='yes' && quantity>0">
+      <span class="icon" v-on:click="$emit('minus')">r</span>
+      <span>{{quantity}}</span>
+      <span class="icon" v-on:click="$emit('plus')">a</span>
     </div>
-
-
-
+    <span v-else class="outofstock">Out of Stock</span>
     <details v-if="!compact">
       <summary>Description</summary>
       {{description}}
