@@ -45,8 +45,9 @@ function items_loaded(){
       settings: settings,
       cartpage: false,
       name: '',
-      phone:'',
-      address:'',
+      referedby:'',
+      address1:'',
+      address2:'',
       matches: true
     },
     computed: {
@@ -65,7 +66,7 @@ function items_loaded(){
         return n;
       },
       ordertext: function(){
-        var s = `${app.name} \n\n address : ${app.address} \n wants to order following Items: \n\n ${app.phone}`;
+        var s = `${app.name} \n\n address : ${app.address1} \n\n ${app.address2} \n\n Refered by: {app.referedby} \n\n wants to order following Items: \n\n`;
         for(var i=0;i<this.items.length;i++){
           if(this.items[i].quantity>0){
             s += `\n\n${this.items[i].Name}\nQuantity: ${this.items[i].quantity}`
