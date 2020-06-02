@@ -45,7 +45,6 @@ function items_loaded(){
       settings: settings,
       cartpage: false,
       name: '',
-      referedby:'',
       address1:'',
       address2:'',
       matches: true
@@ -66,7 +65,7 @@ function items_loaded(){
         return n;
       },
       ordertext: function(){
-        var s = `${app.name} \n\n address : ${app.address1} \n\n ${app.address2} \n\n Refered by: {app.referedby} \n\n wants to order following Items: \n\n`;
+        var s = `${app.name} \n\n address : ${app.address1} \n\n ${app.address2} \n\n wants to order following Items: \n\n`;
         for(var i=0;i<this.items.length;i++){
           if(this.items[i].quantity>0){
             s += `\n\n${this.items[i].Name}\nQuantity: ${this.items[i].quantity}`
@@ -79,7 +78,9 @@ function items_loaded(){
     },
     methods: {
       orderwa: function(){
-        location.href = `https://wa.me/${app.settings.shopphone}/?text=${encodeURIComponent(app.ordertext)}`;
+        if(this.name.length >0) {
+          location.href = `https://wa.me/${app.settings.shopphone}/?text=${encodeURIComponent(app.ordertext)}`;
+        }
       },
       ordersms: function(){
         location.href = `sms:${app.settings.shopphone}?body=${encodeURIComponent(app.ordertext)}`;
