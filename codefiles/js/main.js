@@ -72,6 +72,7 @@ function items_loaded(){
             s += `\n\n${this.items[i].Name}\nQuantity: ${this.items[i].quantity}`
           }
         }
+	s +=`\n\n Total: {{settings.currency}}{{carttotal}}`
         return s
         
       } 
