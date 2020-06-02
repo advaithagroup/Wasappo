@@ -168,12 +168,17 @@
   
 </div>
 <script type="text/x-template" id="shop-item-template">
+  <div class="row">
+    <div class="col-md-4">
+      <img v-if="!compact" v-bind:src="`/inventory/images/${image}`">
+    </div>
+  </div>
   <div class="shopitem">
     <div class="row">
-      <div class="col-md-6 mb-3">
+      <div class="col-md-4">
         <img v-if="!compact" v-bind:src="`/inventory/images/${image}`">
       </div>
-      <div class="col-md-6 mb-3">
+      <div class="col-md-4">
         <span class="name">{{name}}</span>
         <span class="price">{{$parent.settings.currency}}{{unitprice}}/{{unit}}</span>
         <button v-on:click="$emit('plus')" v-if="instock=='yes' && quantity<1">Add to cart</button>
