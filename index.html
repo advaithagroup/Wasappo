@@ -144,6 +144,7 @@
       Your cart is empty
     </div>
     <div v-else id="placeorder">
+      <form>
       <span>Total: {{settings.currency}}{{carttotal}}</span>
       <h2>Place order</h2>
       <input type="text" required v-model:value="name" placeholder="(Your Name)"><br>
@@ -157,6 +158,7 @@
         
       </p>
       <button v-on:click="orderwa">Order Via WhatsApp</button><br>
+      </form>
       </div>
   </section>
   
@@ -168,7 +170,10 @@
 </div>
 <script type="text/x-template" id="shop-item-template">
   <div class="shopitem">
-    <img v-if="!compact" v-bind:src="`/inventory/images/${image}`">
+    <span> <img v-if="!compact" v-bind:src="`/inventory/images/${image}`">
+
+    </span>
+
     <span class="name">{{name}}</span>
     <span class="price">{{$parent.settings.currency}}{{unitprice}}/{{unit}}</span>
     <button v-on:click="$emit('plus')" v-if="instock=='yes' && quantity<1">Add to cart</button>
