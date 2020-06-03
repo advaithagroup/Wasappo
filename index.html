@@ -144,7 +144,6 @@
       Your cart is empty
     </div>
     <div v-else id="placeorder">
-      <form>
       <span>Total: {{settings.currency}}{{carttotal}}</span>
       <h2>Place order</h2>
       <input type="text" required v-model:value="name" placeholder="(Your Name)"><br>
@@ -157,7 +156,6 @@
         
       </p>
       <button v-on:click="orderwa">Order Via WhatsApp</button><br>
-      </form>
       </div>
   </section>
   
