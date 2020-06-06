@@ -78,7 +78,9 @@ function items_loaded(){
     },
     methods: {
       orderwa: function(){
+	 if(`${app.name}`.length > 0){
           location.href = `https://wa.me/${app.settings.shopphone}/?text=${encodeURIComponent(app.ordertext)}`;
+        }
       },
       ordersms: function(){
         location.href = `sms:${app.settings.shopphone}?body=${encodeURIComponent(app.ordertext)}`;
