@@ -107,7 +107,7 @@ a.btn{
   text-align: center;
 }
 #home{
-  padding-top: 40mm;
+  padding-top: 10mm;
 }
 #menu a.btn,#shop a.btn{
   margin: 2mm;
@@ -132,7 +132,6 @@ a.btn{
 }
 .shopitem img{
   width: 50%;
-  column-count: 2;
   border-radius: 2mm;
   grid-column: span 2;
 }
