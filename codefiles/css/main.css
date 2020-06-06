@@ -133,7 +133,7 @@ a.btn{
 }
 .shopitem img{
   width: 100%;
-  border-radius: 2mm;
+  border-radius: 0mm;
   grid-column: span 2;
 }
 .shopitem span.name{
