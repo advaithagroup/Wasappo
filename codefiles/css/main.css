@@ -109,6 +109,7 @@ a.btn{
 }
 #home{
   padding-top: 10mm;
+  width: 100%;
 }
 #menu a.btn,#shop a.btn{
   margin: 2mm;
