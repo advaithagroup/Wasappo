@@ -44,7 +44,7 @@ header a:first-child{
   color: var(--fg);
 }
 header img{
-  height: 10mm;
+  height: 15mm;
   width: 1fr;
   margin-right: 2mm;
 }
