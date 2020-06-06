@@ -112,6 +112,7 @@ a.btn{
 }
 #menu a.btn,#shop a.btn{
   margin: 2mm;
+  width: 100%;
 }
 .category_screen{
   text-align: center;
@@ -132,7 +133,7 @@ a.btn{
   border-bottom: 1mm solid var(--theme);
 }
 .shopitem img{
-  width: 100%;
+  width: 50%;
   border-radius: 2mm 0 0 0;
   grid-column: span 2;
 }
