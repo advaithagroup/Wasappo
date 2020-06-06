@@ -122,7 +122,9 @@ a.btn{
 }
 
 .shopitem {
-  display: grid;
+  display: inline-block;
+  grid-column: span 2;
+  text-align: left;
   border-radius: 2mm;
   background: var(--bg2);
   margin: 5mm 0mm;
@@ -132,7 +134,7 @@ a.btn{
   border-bottom: 1mm solid var(--theme);
 }
 .shopitem img{
-  width: 50%;
+  width: 100%;
   border-radius: 2mm 0 0 0;
   grid-column: span 2;
 }
