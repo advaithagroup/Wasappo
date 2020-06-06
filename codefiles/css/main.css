@@ -19,6 +19,7 @@
 .icon{
   font-family: icons;
   display: inline-block;
+  font-size: 12mm;
 }
 html{
   scroll-behavior: smooth;
