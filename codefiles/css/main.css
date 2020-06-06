@@ -34,7 +34,7 @@ body {
 }
 header {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: auto auto;
 }
 header a:first-child{
   padding: 5mm;
