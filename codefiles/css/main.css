@@ -38,9 +38,9 @@ header {
   grid-template-columns: 1fr auto;
 }
 header a:first-child{
-  padding: 5mm;
+  padding: 2mm;
   text-decoration: none;
-  font-size: 10mm;
+  font-size: 15mm;
   color: var(--fg);
 }
 header img{
