@@ -78,7 +78,7 @@ a.btn{
   padding: 2mm 8mm;
   background: var(--theme);
   color: var(--bg2);
-  border-radius: 10mm;
+  border-radius: 1mm;
 }
 #loading{
   display: block;
