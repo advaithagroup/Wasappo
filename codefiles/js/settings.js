@@ -1,5 +1,5 @@
 let settings = {
-  showOutOfStockItems: true,
+  showOutOfStockItems: false,
   showDescription: true,
   currency: '₹',
   shopphone: '918147169569',
