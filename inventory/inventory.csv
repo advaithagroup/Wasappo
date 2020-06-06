@@ -1,7 +1,7 @@
 Name,Image,Category,Unit Price,Unit,In Stock,Featured,Description
-Onion,onion.jpg,       Veggies    ,50,kg,Yes,Yes,This is only a demo shop. Organic Onions sourced from local Farmers.
-Carrot,carrot.png,       Veggies    ,30,kg,No,No,Carrot
-Capsicum,onion.jpg,       Veggies    ,40,kg,Yes,No,Capsicum
+Onion,onion.jpg,Veggies,50,kg,Yes,Yes,This is only a demo shop. Organic Onions sourced from local Farmers.
+Carrot,carrot.png,Veggies,30,kg,No,No,Carrot
+Capsicum,green-capsicum.png,Veggies,40,kg,Yes,No,Capsicum
 Orange,b1.jpg,Fruits,100,kg,Yes,Yes,Orange
 Banana,onion.jpg,Fruits,50,kg,No,No,Banana
 Turmeric powder (100g),b1.jpg,Spices,20,packet,Yes,No,Turmeric
