@@ -122,7 +122,6 @@ a.btn{
 
 .shopitem {
   display: grid;
-  column-count: 2;
   border-radius: 2mm;
   background: var(--bg2);
   margin: 5mm 0mm;
@@ -138,7 +137,7 @@ a.btn{
 }
 .shopitem span.name{
   display: inline-block;
-  grid-column: span 2;
+  grid-column: span 3;
   text-align: left;
   padding: 2mm 5mm;
   font-size: 125%;
