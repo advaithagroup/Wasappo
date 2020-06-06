@@ -131,7 +131,7 @@ a.btn{
   border-bottom: 1mm solid var(--theme);
 }
 .shopitem img{
-  width: 50%;
+  width: 100%;
   border-radius: 2mm;
   grid-column: span 2;
 }
