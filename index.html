@@ -57,6 +57,7 @@
       v-bind:quantity="i.quantity"
       v-on:plus="i.quantity++"
       v-on:minus="if(i.quantity>0) i.quantity--"
+      v-bind:compact="true"
       >
     </shop-item>
     
@@ -94,6 +95,7 @@
       v-bind:quantity="i.quantity"
       v-on:plus="i.quantity++"
       v-on:minus="if(i.quantity>0) i.quantity--"
+      v-bind:compact="true"
       >
     </shop-item>
     <h2>Shop by categories</h2>
@@ -117,6 +119,7 @@
       v-bind:quantity="i.quantity"
       v-on:plus="i.quantity++"
       v-on:minus="if(i.quantity>0) i.quantity--"
+      v-bind:compact="true"
       >
     </shop-item>
   </section>
