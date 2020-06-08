@@ -142,6 +142,7 @@ a.btn{
 }
 .shopitem span.name{
   display: grid;
+  grid-row: 1;
   grid-column: 2;
   text-align: left;
   padding: 5mm 5mm;
