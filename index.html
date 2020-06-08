@@ -57,7 +57,7 @@
       v-bind:quantity="i.quantity"
       v-on:plus="i.quantity++"
       v-on:minus="if(i.quantity>0) i.quantity--"
-      v-bind:compact="true"
+     
       >
     </shop-item>
     
@@ -95,7 +95,7 @@
       v-bind:quantity="i.quantity"
       v-on:plus="i.quantity++"
       v-on:minus="if(i.quantity>0) i.quantity--"
-      v-bind:compact="true"
+      
       >
     </shop-item>
     <h2>Shop by categories</h2>
@@ -119,7 +119,7 @@
       v-bind:quantity="i.quantity"
       v-on:plus="i.quantity++"
       v-on:minus="if(i.quantity>0) i.quantity--"
-      v-bind:compact="true"
+      
       >
     </shop-item>
   </section>
@@ -170,6 +170,23 @@
 </div>
 <script type="text/x-template" id="shop-item-template">
   <div class="shopitem">
+    <img v-if="!compact" v-bind:src="`/inventory/images/${image}`">
+    <span class="name">{{name}}</span>
+    <span class="price">{{$parent.settings.currency}}{{unitprice}}/{{unit}}</span>
+    <button v-on:click="$emit('plus')" v-if="instock=='yes' && quantity<1">Add to cart</button>
+    <div class="qctrl" v-else-if="instock=='yes' && quantity>0">
+      <span class="icon" v-on:click="$emit('minus')">r</span>
+      <span>{{quantity}}</span>
+      <span class="icon" v-on:click="$emit('plus')">a</span>
+    </div>
+    <span v-else class="outofstock">Out of Stock</span>
+    <details v-if="!compact">
+      <summary>Description</summary>
+      {{description}}
+    </details>
+  </div>
+  
+   <div class="shopitemcart">
     <img v-if="!compact" v-bind:src="`/inventory/images/${image}`">
     <span class="name">{{name}}</span>
     <span class="price">{{$parent.settings.currency}}{{unitprice}}/{{unit}}</span>
