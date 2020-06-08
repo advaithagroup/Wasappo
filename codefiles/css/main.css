@@ -150,7 +150,8 @@ a.btn{
 }
 .shopitem span.price{
   text-align: left;
-  display: inline-block;
+  display: grid;
+  grid-column: 2;
   padding: 0mm 5mm;
 }
 .shopitem button, .shopitem .outofstock{
