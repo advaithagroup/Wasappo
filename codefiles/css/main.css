@@ -134,6 +134,18 @@ a.btn{
   padding-bottom: 5mm;
   border-bottom: 1mm solid var(--theme);
 }
+
+.shopitemcart {
+  display: grid;
+  border-radius: 2mm;
+  background: var(--bg2);
+  margin: 5mm 0mm;
+  box-shadow: 0 0.25mm 2mm rgba(0,0,0,0.3);
+  grid-template-columns: 1fr auto;
+  padding-bottom: 5mm;
+  border-bottom: 1mm solid var(--theme);
+}
+
 .shopitem img{
   width: 100%;
   border-radius: 2mm 0 0 0;
