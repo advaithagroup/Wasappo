@@ -152,9 +152,9 @@ a.btn{
 .shopitem span.price{
   text-align: left;
   display: grid;
+  grid-row: 1;
   grid-column: 2;
-  grid-row: 2;
-  padding: 5mm 5mm;
+  padding: 1mm 5mm;
 }
 .shopitem button, .shopitem .outofstock{
   background: var(--theme);
