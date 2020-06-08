@@ -153,7 +153,8 @@ a.btn{
   text-align: left;
   display: grid;
   grid-column: 2;
-  padding: 0mm 5mm;
+  grid-row: 2;
+  padding: 5mm 5mm;
 }
 .shopitem button, .shopitem .outofstock{
   background: var(--theme);
