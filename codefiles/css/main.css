@@ -154,7 +154,7 @@ a.btn{
   display: grid;
   grid-row: 1;
   grid-column: 2;
-  padding: 1mm 5mm;
+  padding: 15mm 5mm;
 }
 .shopitem button, .shopitem .outofstock{
   background: var(--theme);
