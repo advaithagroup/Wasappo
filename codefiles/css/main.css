@@ -164,6 +164,9 @@ a.btn{
   outline: none;
   padding: 1mm 3mm;
   font-size: 80%;
+  display: grid;
+  grid-row: 1;
+  grid-column: 2;
   border-radius: 10mm;
   margin: 0mm 5mm 0mm 2mm;
 }
