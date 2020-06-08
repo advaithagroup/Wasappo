@@ -144,7 +144,7 @@ a.btn{
   display: grid;
   grid-column: 2;
   text-align: left;
-  padding: 2mm 5mm;
+  padding: 5mm 5mm;
   font-size: 125%;
   color: var(--theme);
 }
