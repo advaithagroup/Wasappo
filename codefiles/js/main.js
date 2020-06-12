@@ -4,7 +4,7 @@ let categories;
 let settings = {
   showOutOfStockItems: true,
   showDescription: false,
-  currency: 'â‚¹',
+  currency: '₹',
   shopphone: '919844923849',
   shopemail: 'None',
   inventoryURL: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQrhRdVZPtI-b7hYzzTa_bAmGE8oax_vOAw58L2feiVQ0fXvVRRYV4jG4Lf-PprLuUdfQmSs1o2XNp1/pub?gid=0&single=true&output=csv'
