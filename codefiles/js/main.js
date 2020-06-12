@@ -1,9 +1,17 @@
 let items;
 let inventory;
 let categories;
+let settings = {
+  showOutOfStockItems: true,
+  showDescription: false,
+  currency: 'â‚¹',
+  shopphone: '919844923849',
+  shopemail: 'None',
+  inventoryURL: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQrhRdVZPtI-b7hYzzTa_bAmGE8oax_vOAw58L2feiVQ0fXvVRRYV4jG4Lf-PprLuUdfQmSs1o2XNp1/pub?gid=0&single=true&output=csv'
+};
 
 function init(){
-  Papa.parse("/inventory/inventory.csv", {
+  Papa.parse(settings.inventoryURL, {
 	  download: true,
 	  header: true,
 	  complete: function(results) {
@@ -13,13 +21,20 @@ function init(){
   });
 }
 
+function sanitizeFloat(n){
+  n = n.toFixed(3);
+  n = parseFloat(n);
+  return n
+}
+
 function items_loaded(){
   document.getElementById("loading").style.display = "none";
-  document.getElementById("app").style.display = "inline-block";
+  document.getElementById("app").style.display = "inline-grid";
   if(items[items.length-1]['Name']==""){
     items.pop();
   }
   
+  console.log(items);
   categories = [];
   
   for(var i=0;i<items.length;i++){
@@ -27,14 +42,57 @@ function items_loaded(){
       categories.push(items[i].Category);
     }
     items[i].quantity = 0;
-    items[i].match = false;
+    items[i].match = true;
     items[i]['In Stock'] = items[i]['In Stock'].toLowerCase();
-    items[i]['Featured'] = items[i]['Featured'].toLowerCase();
+    //items[i]['Featured'] = items[i]['Featured'].toLowerCase();
   }
   
+  items.sort(function(item_a,item_b){
+    return item_a.Name.localeCompare(item_b.Name);
+  });
+  
   Vue.component('shop-item',{
-    props: ['name','image','category','unitprice','unit','instock','description','quantity','compact'],
-    template: '#shop-item-template'
+    props: ['name','image','category','unitprice','unit','instock','description','value','compact'],
+    template: '#shop-item-template',
+    data: function(){
+      return {
+        addtocart: true
+      };
+    },
+    methods: {
+      increment: function(){
+        console.log(this.value);
+        this.addtocart = false;
+        this.value+=1.0;
+        this.value = sanitizeFloat(this.value);
+        console.log(this.value);
+        this.$emit('input',this.value);
+      },
+      decrement: function(){
+        console.log(this.value);
+        this.value = parseFloat(this.value);
+        if(this.value>=1){
+          this.value-=1.0;
+        }
+        else{
+          this.value=0;
+        }
+        this.value = sanitizeFloat(this.value);
+        console.log(this.value);
+        this.$emit('input',this.value);
+      },
+      change: function(e){
+        console.log(this.value);
+        this.value = e.target.value;
+        this.value = parseFloat(this.value);
+        if(this.value<0){
+          this.value = 0;
+        }
+        this.value = sanitizeFloat(this.value);
+        console.log(this.value);
+        this.$emit('input',this.value);
+      }
+    }
   });
   
   app = new Vue({
@@ -45,9 +103,8 @@ function items_loaded(){
       settings: settings,
       cartpage: false,
       name: '',
-      address1:'',
-      address2:'',
-      matches: true
+      page: '',
+      activeCategory: 'All Categories',
     },
     computed: {
       carttotal: function(){
@@ -65,40 +122,31 @@ function items_loaded(){
         return n;
       },
       ordertext: function(){
-        var s = `${app.name} \n\n address : ${app.address1} \n\n ${app.address2} \n\n wants to order following Items: \n\n`;
+        var s = `${app.name} would like to order the following items: \n\n`;
         for(var i=0;i<this.items.length;i++){
           if(this.items[i].quantity>0){
-            s += `\n\n${this.items[i].Name}\nQuantity: ${this.items[i].quantity}`
+            s += `\n\n${this.items[i].Name}\nQuantity: ${this.items[i].quantity} ${this.items[i].Unit}`
           }
         }
-	s +=`\n\n Total: ${settings.currency}${this.carttotal}`
         return s
         
       } 
     },
     methods: {
       orderwa: function(){
-	 if(`${app.name}`.length > 0){
-          location.href = `https://wa.me/${app.settings.shopphone}/?text=${encodeURIComponent(app.ordertext)}`;
-        }
+        location.href = `https://wa.me/${app.settings.shopphone}/?text=${encodeURIComponent(app.ordertext)}`;
       },
-      ordersms: function(){
-        location.href = `sms:${app.settings.shopphone}?body=${encodeURIComponent(app.ordertext)}`;
-      },
-      orderemail: function(){
-        location.href = `mailto:${app.settings.shopemail}?subject=Order%20from%20${app.name}&body=${encodeURIComponent(app.ordertext)}`;
-      },
-      search: function(){
+      filter_items: function(){
         var query = document.querySelector('#searchquery').value;
         query = query.trim().toLowerCase();
-        app.matches = false;
+        console.log(this.activeCategory);
         for(var i=0;i<app.items.length;i++){
           var target = app.items[i].Name.toLowerCase();
-          if(target.includes(query)){
-            app.items[i].match = true;
-            app.matches = true;
+          app.items[i].match = true;
+          if(query && !target.includes(query)){
+            app.items[i].match = false;
           }
-          else{
+          if(this.activeCategory!='All Categories' && this.activeCategory!=items[i].Category){
             app.items[i].match = false;
           }
         }
@@ -110,15 +158,6 @@ function items_loaded(){
 
 function goToOrder(){
   document.getElementById('placeorder').scrollIntoView();
-}
-
-function menuclick(){
-  if(hnav.page=="menu"){
-   window.history.back();
-  }
-  else{
-    location.href = "#menu";
-  }
 }
 
 
