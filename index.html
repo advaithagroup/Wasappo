@@ -1,13 +1,15 @@
+
 <html>
 <head>
-  <title> NammaBasket | WhatsApp Shopping </title>
+  <title>Namma Organic Store</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#1d201f">
   <meta charset="utf-8">
-  <meta name="description" content="NammaBasket : Now order on WhatsApp">
+  <meta name="description" content="Organic Vegetables and Grocery">
   
-  <meta property="og:title" content="NammaBasket: Shop Via WhatsApp" />
-  <meta property="og:image" content="/codefiles/assets/icon.png">
+  <meta property="og:title" content="Namma Organic Store"/>
+  <meta property="og:url" content="https://nammaorganic.netlify.app/"/>
+  <meta property="og:description" content="Organic Vegetables and Grocery">
+  <meta property="og:image" content="/codefiles/assets/ogicon.png">
   <meta property="og:type" content="website" />
   
   <meta name="twitter:card" content="app"></meta>
@@ -19,7 +21,6 @@
   <script src="/codefiles/js/hnav.js"></script>
   <script src="/codefiles/js/papaparse.min.js"></script>
   <script src="/codefiles/js/vue.min.js"></script>
-  <script src="/codefiles/js/settings.js"></script>
   <script src="/codefiles/js/main.js"></script>
 </head>
 <body onload="init()">
@@ -30,99 +31,55 @@
 <div id="app">
   <header>
     <a href="#home">
-      <img src="/codefiles/assets/logotext.png">
+      <strong> Namma Organic Store </strong>
     </a>
-    <a onclick="menuclick()">
-      <span class="icon">m</span>
+    <a href="#home" v-if="page=='shop'" style="color: var(--theme);">
+      HOME
+    </a>
+    <a href="#shop" v-else style="color: var(--theme);">
+      SHOP
     </a>
   </header>
-  <section id="home" class="hnav" hnav:start>
+  <section id="home" class="hnav">
     <h3>
-    Select Products and Order through Whatsapp
+     Organic Vegetables and Grocery
+      <br> 
     </h3>
-    <a href="#shop" class="btn"> Shop </a>
-    <br><br>
-      
-    <h1>Featured items</h1>
-    
-    <shop-item 
-      v-for="i in items" 
-      v-if="i.Featured=='yes'" 
-      v-bind:name="i.Name"
-      v-bind:image="i.Image"
-      v-bind:description="i.Description"
-      v-bind:unitprice="i['Unit Price']"
-      v-bind:unit="i['Unit']"
-      v-bind:instock="i['In Stock']"
-      v-bind:quantity="i.quantity"
-      v-on:plus="i.quantity++"
-      v-on:minus="if(i.quantity>0) i.quantity--"
-     
-      >
-    </shop-item>
-    
+    <a href="#shop" class="btn">Order now</a>
+    <br><br><br>
+    <img src="/inventory/images/map.svg">
+    <br>
+    <p>36, 7th Cross, 6th Main, Malleshwaram</p>
+    <a href="https://www.google.com/maps/place/Namma+Organic+Store/@12.9980882,77.5672775,18z/data=!4m8!1m2!2m1!1s36,+7th+Cross,+6th+Main,+Malleshwaram!3m4!1s0x3bae16310cd4d1ad:0xe5ec1852cd223d82!8m2!3d12.9982613!4d77.5670685" class="btn">Open in Maps</a>
   </section>
   
-  <section id="menu" class="hnav">
-    <h1>Menu</h1>
-    <a class="btn" href="#home">Home Page</a>
-    <a class="btn" href="#shop">Shop</a>
-    <a class="btn" v-if="nitems>0" href="#checkout">Check Out</a>
-    <br><br>
-    <h2>Shop by categories</h2>
-    <a class="btn" v-for="c in categories" v-bind:href="'#'+encodeURIComponent(c)">
-      {{c}}
-    </a>
-  </section>
-  
-  <section id="shop" class="hnav">
-    <h1>Shop</h1>
-    <h3>Available Products</h3>
-    <form class="searchbox" v-on:submit="search" action="javascript:document.querySelector('#searchquery').blur()">
-      <input id="searchquery" type="text" placeholder="Search for items">
-      <input class="icon" type="submit" value="s">
-    </form>
-    <p v-if="!matches">No items matched your search</p>
-    <shop-item 
-      v-for="i in items" 
-      v-if="i.match" 
-      v-bind:name="i.Name"
-      v-bind:image="i.Image"
-      v-bind:description="i.Description"
-      v-bind:unitprice="i['Unit Price']"
-      v-bind:unit="i['Unit']"
-      v-bind:instock="i['In Stock']"
-      v-bind:quantity="i.quantity"
-      v-on:plus="i.quantity++"
-      v-on:minus="if(i.quantity>0) i.quantity--"
-      
-      >
-    </shop-item>
-    <h2>Shop by categories</h2>
-    <a class="btn" v-for="c in categories" v-bind:href="'#'+encodeURIComponent(c)">
-      {{c}}
-    </a>
+  <section id="shop" class="hnav" hnav:start>
+    <p>
+      <input type="name" id="searchquery" v-on:input="filter_items" placeholder="Search" autocomplete="off">
+      <select v-model="activeCategory" v-on:change="filter_items" style="text-align-last: right;">
+        <option value="All Categories">All Categories</option>
+        <option v-for="category in categories" v-bind:value="category">
+          {{category}}
+        </option>
+      </select>
+    </p>
+    <div v-bind:empty-message="'No matching items in '+activeCategory">  
+      <shop-item 
+        v-for="i in items" 
+        v-bind:name="i.Name"
+        v-bind:image="i.Image"
+        v-if="i.match"
+        v-bind:description="i.Description"
+        v-bind:unitprice="i['Unit Price']"
+        v-bind:unit="i['Unit']"
+        v-bind:instock="i['In Stock']"
+        v-model:value="i.quantity"
+        >
+      </shop-item>
+    </div>  
     
   </section>
   
-  <section v-for="c in categories" class="hnav category_screen" v-bind:id="encodeURIComponent(c)" class="hnav">
-    <h1>{{c}}</h1>
-    <shop-item 
-      v-for="i in items" 
-      v-if="i.Category==c" 
-      v-bind:name="i.Name"
-      v-bind:image="i.Image"
-      v-bind:description="i.Description"
-      v-bind:unitprice="i['Unit Price']"
-      v-bind:unit="i['Unit']"
-      v-bind:instock="i['In Stock']"
-      v-bind:quantity="i.quantity"
-      v-on:plus="i.quantity++"
-      v-on:minus="if(i.quantity>0) i.quantity--"
-      
-      >
-    </shop-item>
-  </section>
     
   <section id="checkout" class="hnav" hnav:on="app.cartpage=true;" hnav:off="app.cartpage=false;">
     <h1>Your Cart</h1>
@@ -136,9 +93,7 @@
       v-bind:unitprice="i['Unit Price']"
       v-bind:unit="i['Unit']"
       v-bind:instock="i['In Stock']"
-      v-bind:quantity="i.quantity"
-      v-on:plus="i.quantity++"
-      v-on:minus="if(i.quantity>0) i.quantity--"
+      v-model:value="i.quantity"
       v-bind:compact="true"
       >
     </shop-item>
@@ -149,17 +104,9 @@
     <div v-else id="placeorder">
       <span>Total: {{settings.currency}}{{carttotal}}</span>
       <h2>Place order</h2>
-      <input type="text" required v-model:value="name" placeholder="(Your Name)" required><br>
-      <input type="text" v-model:value="address1" placeholder="(Address 1)"><br>
-      <input type="text" v-model:value="address2" placeholder="(Address 2)"><br>
-
-      <p>
-       Order on Whatsapp.
-        <br>
-        
-      </p>
+      <input type="text" v-model:value="name" placeholder="(Your Name)"><br>
       <button v-on:click="orderwa">Order Via WhatsApp</button><br>
-      </div>
+    </div>
   </section>
   
   <div id="footer" v-if="nitems>0 && !cartpage">
@@ -169,35 +116,39 @@
   
 </div>
 <script type="text/x-template" id="shop-item-template">
-  <div class="shopitem">
-    <img v-if="!compact" v-bind:src="`/inventory/images/${image}`">
+  <div class="shopitem" v-bind:class="{compact:compact}">
+    
+    <img
+      class="image-holder" 
+      style="grid-area: 1 / 1 / 4 / 2;" 
+      v-bind:src="image"
+    />
+      
+    
     <span class="name">{{name}}</span>
+    
     <span class="price">{{$parent.settings.currency}}{{unitprice}}/{{unit}}</span>
-    <button v-on:click="$emit('plus')" v-if="instock=='yes' && quantity<1">Add to cart</button>
-    <div class="qctrl" v-else-if="instock=='yes' && quantity>0">
-      <span class="icon" v-on:click="$emit('minus')">r</span>
-      <span>{{quantity}}</span>
-      <span class="icon" v-on:click="$emit('plus')">a</span>
+    
+    <div style="grid-area: 3 / 2 / 4 / 3;" v-if="instock=='yes' && addtocart && value<=0">
+      <button v-on:click="increment" class="addtocart" style="width: 100%; padding: 0.5mm 3mm; font-size: 80%;">Add to cart</button>
     </div>
-    <span v-else class="outofstock">Out of Stock</span>
-    <details v-if="!compact">
-      <summary>Description</summary>
-      {{description}}
-    </details>
-  </div>
-  
-   <div class="shopitemcart">
-    <img v-if="!compact" v-bind:src="`/inventory/images/${image}`">
-    <span class="name">{{name}}</span>
-    <span class="price">{{$parent.settings.currency}}{{unitprice}}/{{unit}}</span>
-    <button v-on:click="$emit('plus')" v-if="instock=='yes' && quantity<1">Add to cart</button>
-    <div class="qctrl" v-else-if="instock=='yes' && quantity>0">
-      <span class="icon" v-on:click="$emit('minus')">r</span>
-      <span>{{quantity}}</span>
-      <span class="icon" v-on:click="$emit('plus')">a</span>
+    <div style="grid-area: 3 / 2 / 4 / 3;" v-else-if="instock!='yes'">
+      <span style="grid-area: 3 / 2 / 4 / 3;" class="outofstock">Out of Stock</span>
     </div>
-    <span v-else class="outofstock">Out of Stock</span>
-    <details v-if="!compact">
+    
+    <div style="grid-area: 3 / 2 / 4 / 3;" class="qctrl" v-else>
+      <span class="icon" v-on:click="decrement">r</span>
+      <input v-bind:value="value" type="number" min="-0.00001" v-on:input="change">
+      <span class="icon" v-on:click="increment">a</span>
+    </div>
+    
+    <span class="total" 
+      style="grid-area: 3 / 3 / 4 / 4; justify-self: right; padding-right: 5mm;" 
+      v-if="value>0">
+        {{$parent.settings.currency}}{{(value*unitprice).toFixed(2)}}
+    </span>
+
+    <details v-if="!compact && $root.settings.showDescription" style="grid-area: 4 / 1 / 5 / 4 ;">
       <summary>Description</summary>
       {{description}}
     </details>
