@@ -48,6 +48,6 @@ hnav.change = function(){
     }
     hnav.page = hash;
     window.scrollTo(0,0);
-
+    app.page = hash;
   }
 }
