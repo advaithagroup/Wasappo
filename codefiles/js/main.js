@@ -5,7 +5,7 @@ let settings = {
   showOutOfStockItems: false,
   showDescription: false,
   currency: '₹',
-  shopphone: '9886991517',
+  shopphone: '8147169569',
   shopemail: 'None',
   inventoryURL: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRTKadYnHcUpLecESFReObWWP4xP97GPN_TRI72UBYtEn7GNHPHxtKSapqv5LvvGvDNF_HNzcZBeV7X/pub?gid=0&single=true&output=csv'
 };
