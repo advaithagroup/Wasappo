@@ -145,7 +145,7 @@ header{
 }
 .shopitem .name{
   color: #050505;
-  font-size: 3mm;
+  font-size: 4mm;
   grid-area: 1 / 2 / 2 / 4;
 }
 .shopitem .price{
