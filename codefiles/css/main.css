@@ -144,7 +144,8 @@ header{
   border-radius: 2mm;
 }
 .shopitem .name{
-  color: var(--theme);
+  color: #050505;
+  font-size: 5mm;
   grid-area: 1 / 2 / 2 / 4;
 }
 .shopitem .price{
