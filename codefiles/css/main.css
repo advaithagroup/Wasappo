@@ -108,7 +108,7 @@ header{
 }
 #app{
   display: none;
-  background: var(--theme);
+  background: var(--bg1);
   width: 100%;
   max-width: 180mm;
   text-align: left;
