@@ -108,7 +108,7 @@ header{
 }
 #app{
   display: none;
-  background: var(--bg1);
+  background: var(--theme);
   width: 100%;
   max-width: 180mm;
   text-align: left;
@@ -135,7 +135,8 @@ header{
 }
 .shopitem>*{
   display: inline-block;
-  padding: 2mm;
+  padding: 0mm;
+  font-size: 50%  
 }
 .shopitem .image-holder{
   width: 100%;
@@ -144,8 +145,7 @@ header{
   border-radius: 2mm;
 }
 .shopitem .name{
-  color: #050505;
-  font-size: 4mm;
+  color: var(--bg2);
   grid-area: 1 / 2 / 2 / 4;
 }
 .shopitem .price{
