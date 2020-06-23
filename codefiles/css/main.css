@@ -135,7 +135,7 @@ header{
 }
 .shopitem>*{
   display: inline-block;
-  padding: 1mm;
+  padding: 2mm;
 }
 .shopitem .image-holder{
   width: 100%;
