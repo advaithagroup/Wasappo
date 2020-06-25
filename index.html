@@ -147,7 +147,7 @@
         {{$parent.settings.currency}}{{(value*unitprice).toFixed(2)}}
     </span>
 
-    <details v-if="!compact && $root.settings.showDescription" style="grid-area: 4 / 1 / 5 / 4 ;font-size:12px; padding:0;">
+    <details v-if="!compact && $root.settings.showDescription" style="grid-area: 4 / 1 / 5 / 4 ;">
       <summary>Description</summary>
       {{description}}
     </details>
