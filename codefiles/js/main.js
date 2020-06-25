@@ -3,7 +3,7 @@ let inventory;
 let categories;
 let settings = {
   showOutOfStockItems: false,
-  showDescription: true,
+  showDescription: false,
   currency: '₹',
   shopphone: '8147169569',
   shopemail: 'None',
