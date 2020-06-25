@@ -7,7 +7,7 @@ let settings = {
   currency: '₹',
   shopphone: '8147169569',
   shopemail: 'None',
-  inventoryURL: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ1rYmGwL8X7goUgaajFOaIPUk3qmNR1iM9BZCgd6X18uwjdDmaH6r9n71n0mphQbKOcStkaCzbqJFe/pub?gid=0&single=true&output=csv'
+  inventoryURL: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ1rYmGwL8X7goUgaajFOaIPUk3qmNR1iM9BZCgd6X18uwjdDmaH6r9n71n0mphQbKOcStkaCzbqJFe/pub?output=csv'
 };
 
 function init(){
