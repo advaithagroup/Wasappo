@@ -11,13 +11,13 @@ let settings = {
 };
 
 function init(){
-  Papa.parse(settings.inventoryURL, {
-	  download: true,
-	  header: true,
-	  complete: function(results) {
-		  items = results.data;
-		  items_loaded();
-	  }
+ Tabletop.init({
+    key: settings.inventoryURL,
+    simpleSheet: true
+  
+  }).then(function(data,tabletop) {
+		items = data;
+		items_loaded();
   });
 }
 
