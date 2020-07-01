@@ -69,10 +69,10 @@
       <shop-item 
         v-for="i in items" 
         v-bind:name="i.Name"
+        v-bind:farm="i['Farm Name']"
         v-bind:image="i.Image"
-        v-if="i.match"
+        v-if="i.match && i['In Stock']=='yes'"
         v-bind:description="i.Description"
-        v-bind:farmname="i.FarmName"
         v-bind:unitprice="i['Unit Price']"
         v-bind:unit="i['Unit']"
         v-bind:instock="i['In Stock']"
@@ -92,7 +92,7 @@
       v-for="i in items" 
       v-if="i.quantity>0" 
       v-bind:name="i.Name"
-      v-bind:farmname="i.FarmName"
+      v-bind:farm="i['Farm Name']"
       v-bind:description="i.Description"
       v-bind:unitprice="i['Unit Price']"
       v-bind:unit="i['Unit']"
@@ -108,7 +108,9 @@
     <div v-else id="placeorder">
       <span>Total: {{settings.currency}}{{carttotal}}</span>
       <h2>Place order</h2>
-      <input type="text" v-model:value="name" placeholder="(Your Name)"><br>
+      <input type="text" v-model="name" placeholder="(Your Name)"><br>
+      <textarea v-model="address" placeholder="(Your Address)"></textarea>
+      
       <button v-on:click="orderwa">Order Via WhatsApp</button><br>
     </div>
   </section>
@@ -129,25 +131,29 @@
     />
       
     
-    <span class="name">{{name}}</span>
-    <span class="farmname">{{farmname}}</span>
+    <span class="name">
+      {{name}}
+      <br v-if="!compact">
+      <span v-if="!compact" style="color: var(--fg);">{{farm}}</span>
+    </span>
+    
     <span class="price">{{$parent.settings.currency}}{{unitprice}}/{{unit}}</span>
     
-    <div style="grid-area: 3 / 3 / 4 / 3;" v-if="instock=='yes' && addtocart && value<=0">
+    <div style="grid-area: 3 / 2 / 4 / 3;" v-if="instock=='yes' && value<=0">
       <button v-on:click="increment" class="addtocart" style="width: 100%; padding: 0.5mm 3mm; font-size: 80%;">Add to cart</button>
     </div>
     <div style="grid-area: 3 / 2 / 4 / 3;" v-else-if="instock!='yes'">
       <span style="grid-area: 3 / 2 / 4 / 3;" class="outofstock">Out of Stock</span>
     </div>
     
-    <div style="grid-area: 3 / 3 / 4 / 3;" class="qctrl" v-else>
+    <div class="qctrl" v-else>
       <span class="icon" v-on:click="decrement">r</span>
-      <input v-bind:value="value" type="number" min="-0.00001" v-on:input="change">
+      <span class="qty-display">{{value}}</span>
       <span class="icon" v-on:click="increment">a</span>
     </div>
     
     <span class="total" 
-      style="grid-area: 3 / 3 / 4 / 3; justify-self: end; padding-right: 2mm;" 
+      style="justify-self: right; padding-right: 5mm;" 
       v-if="value>0">
         {{$parent.settings.currency}}{{(value*unitprice).toFixed(2)}}
     </span>
