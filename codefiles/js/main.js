@@ -11,7 +11,7 @@ let settings = {
 };
 
 function init(){
- Tabletop.init({
+  Tabletop.init({
     key: settings.inventoryURL,
     simpleSheet: true
   
@@ -20,6 +20,7 @@ function init(){
 		items_loaded();
   });
 }
+
 
 function sanitizeFloat(n){
   n = n.toFixed(3);
@@ -37,7 +38,14 @@ function items_loaded(){
   console.log(items);
   categories = [];
   
+  var phoneitem;
   for(var i=0;i<items.length;i++){
+    if(items[i].Name=="whatsapp_number"){
+      settings.shopphone="91"+items[i].Image;
+      phoneitem=i;
+      continue;	    
+    }
+    	  
     if(!categories.includes(items[i].Category)){
       categories.push(items[i].Category);
     }
@@ -46,13 +54,15 @@ function items_loaded(){
     items[i]['In Stock'] = items[i]['In Stock'].toLowerCase();
     //items[i]['Featured'] = items[i]['Featured'].toLowerCase();
   }
+	
+  items.splice(phoneitem,1)
   
   items.sort(function(item_a,item_b){
     return item_a.Name.localeCompare(item_b.Name);
-  });
-  
+  })
+	
   Vue.component('shop-item',{
-    props: ['name','image','category','unitprice','unit','instock','description','value','compact','farmname'],
+    props: ['name','farm','image','category','unitprice','unit','instock','description','value','compact'],
     template: '#shop-item-template',
     data: function(){
       return {
@@ -103,6 +113,7 @@ function items_loaded(){
       settings: settings,
       cartpage: false,
       name: '',
+      address: '',
       page: '',
       activeCategory: 'All Categories',
     },
@@ -122,18 +133,38 @@ function items_loaded(){
         return n;
       },
       ordertext: function(){
-        var s = `${app.name} would like to order the following items: \n\n`;
+        var s = `${app.name} would like to order the following items: \n`;
         for(var i=0;i<this.items.length;i++){
           if(this.items[i].quantity>0){
             s += `\n\n${this.items[i].Name}\nQuantity: ${this.items[i].quantity} ${this.items[i].Unit}`
           }
         }
+        s += `\n\nTotal: ${app.settings.currency}${app.carttotal}`;
+        s += `\n\nAddress: ${app.address}`;
         return s
         
       } 
     },
+    watch: {
+      'name': function(){
+        localStorage.setItem('name',this.name);
+      },
+      'address': function(){
+        localStorage.setItem('address',this.address);
+      }
+    },
     methods: {
       orderwa: function(){
+        this.name = this.name.trim();
+        this.address = this.address.trim();
+        if(!this.name){
+          alert('Please enter your name');
+          return;
+        }
+        if(!this.address){
+          alert('Please enter your address');
+          return;
+        }
         location.href = `https://wa.me/${app.settings.shopphone}/?text=${encodeURIComponent(app.ordertext)}`;
       },
       filter_items: function(){
@@ -154,6 +185,12 @@ function items_loaded(){
     }
   });
   hnav.init();
+  if ('name' in localStorage){
+    app.name = localStorage.getItem('name');
+  }
+  if ('address' in localStorage){
+    app.address = localStorage.getItem('address');
+  }
 }
 
 function goToOrder(){
