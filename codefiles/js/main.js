@@ -52,7 +52,7 @@ function items_loaded(){
   });
   
   Vue.component('shop-item',{
-    props: ['name','image','category','unitprice','unit','instock','description','value','compact'],
+    props: ['name','image','category','unitprice','unit','instock','description','value','compact','farmname'],
     template: '#shop-item-template',
     data: function(){
       return {
