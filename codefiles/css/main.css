@@ -159,7 +159,7 @@ header{
   grid-gap: 1mm;
   align-items: center;
   max-width: 4cm;
-  font-size: 31px;
+  font-size: 25px;
 }
 .qctrl .qty-display{
   display: inline-block;
