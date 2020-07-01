@@ -19,7 +19,6 @@
 .icon{
   font-family: icons;
   display: inline-block;
-  font-size: 10mm;
 }
 html{
   scroll-behavior: smooth;
@@ -161,7 +160,6 @@ header{
   grid-gap: 1mm;
   align-items: center;
   max-width: 4cm;
-  font-size: 25px;
 }
 .qctrl .qty-display{
   display: inline-block;
