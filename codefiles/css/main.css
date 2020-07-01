@@ -148,7 +148,7 @@ header{
   grid-area: 1 / 2 / 2 / 4;
 }
 .shopitem .price{
-  grid-area: 2 / 2 / 3 / 4;
+  grid-area: 3 / 2 / 3 / 4;
 }
 .shopitem .qctrl{
   display: grid;
