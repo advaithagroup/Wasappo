@@ -147,6 +147,9 @@ header{
   color: var(--theme);
   grid-area: 1 / 2 / 2 / 4;
 }
+.shopitem .farmname{
+ grid-area: 2 / 2 / 3 / 4;
+}
 .shopitem .price{
   grid-area: 3 / 2 / 3 / 4;
 }
