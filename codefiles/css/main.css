@@ -186,7 +186,7 @@ header{
   grid-area: 2 / 2 / 3 / 3;
 }
 .shopitem.compact .farmname{
- grid-area: 2 / 3 / 3 / 4;
+ grid-area: 3 / 2 / 3 / 4;
 }
 .shopitem.compact .price{
   grid-area: 2 / 3 / 3 / 4;
