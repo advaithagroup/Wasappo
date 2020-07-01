@@ -152,6 +152,7 @@ header{
 }
 .shopitem .price{
   grid-area: 2 / 2 / 3 / 4;
+  font-size: 20px;
 }
 .shopitem .qctrl{
   display: grid;
